@@ -2,7 +2,7 @@
 
 ![Python 3.8](https://img.shields.io/badge/python-3.8-green.svg)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/levindabhi/ACGPN/blob/master/ACGPN_and_SieveNet.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com)
 
 This repo contains training code, inference code and pre-trained model for Cloths Parsing from human portrait.</br>
 Here clothes are parsed into 3 category: Upper body(red), Lower body(green) and Full body(yellow)
