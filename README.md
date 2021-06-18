@@ -2,7 +2,7 @@
 
 ![Python 3.8](https://img.shields.io/badge/python-3.8-green.svg)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1EhEy3uQh-5oOSagUotVOJAf8m7Vqn0D6?usp=sharing)
 
 This repo contains training code, inference code and pre-trained model for Cloths Parsing from human portrait.</br>
 Here clothes are parsed into 3 category: Upper body(red), Lower body(green) and Full body(yellow)
@@ -36,7 +36,9 @@ This model works well with any background and almost all poses. For more samples
 - You can explore various options in `options/base_options.py` like checkpoint saving folder, logs folder etc.
 - For single gpu set `distributed = False` in `options/base_options.py`, for multi gpu set it to `True`.
 - For single gpu run `python train.py`
-- For multi gpu run `python -m torch.distributed.launch --nnodes=1 --node_rank=0 --nproc_per_node=4 --use_env train.py`. Here command is for single node, 4 gpu. Tested only for single node.
+- For multi gpu run <br>
+&nbsp;`python -m torch.distributed.launch --nnodes=1 --node_rank=0 --nproc_per_node=4 --use_env train.py` <br>
+Here command is for single node, 4 gpu. Tested only for single node.
 - You can watch loss graphs and samples in tensorboard by running tensorboard command in log folder.
 
 
@@ -45,6 +47,8 @@ This model works well with any background and almost all poses. For more samples
 - Put input images in `input_images` folder
 - Run `python infer.py` for inference.
 - Output will be saved in `output_images`
+### OR 
+- Inference in colab from here [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1EhEy3uQh-5oOSagUotVOJAf8m7Vqn0D6?usp=sharing)
 
 # Acknowledgements
 - U2net model is from original [u2net repo](https://github.com/xuebinqin/U-2-Net). Thanks to Xuebin Qin for amazing repo.
