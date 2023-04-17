@@ -98,7 +98,7 @@ To get info about the arguments:
 ```
 python deployed_infer.py --help
 ```
-
+**Note:** The location of the endpoint, model and deployed model should be same.
 # Acknowledgements
 - U2net model is from original [u2net repo](https://github.com/xuebinqin/U-2-Net). Thanks to Xuebin Qin for amazing repo.
 - Complete repo follows structure of [Pix2pixHD repo](https://github.com/NVIDIA/pix2pixHD)
