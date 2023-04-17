@@ -50,6 +50,52 @@ Here command is for single node, 4 gpu. Tested only for single node.
 ### OR 
 - Inference in colab from here [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1EhEy3uQh-5oOSagUotVOJAf8m7Vqn0D6?usp=sharing)
 
+# Deploy on Vertex AI with Torchserve
+- Download pretrained model of `.pt` format from this [link](https://drive.google.com/file/d/1Ee4igrf5axte9nV1KvcgtEnO7KPKaVm6/view?usp=sharing)(165 MB) in `deploy` folder.
+- Build the docker image inside the `deploy` folder using command(`project-id` with the id of your google cloud project) `docker build -t gcr.io/(project-id)/pytorch_predict_cloth_seg .`.
+- Authenticate with the Google Cloud SDK by running the command `gcloud auth configure-docker`.
+- Push your Docker image to the Google Cloud Registry using the command `docker push gcr.io/(project-id)/pytorch_predict_cloth_seg`.
+- Create a new custom model on vertex ai using this commad in google cloud sdk(replace `<location>` and `<project-id>`):
+```
+gcloud ai models upload \
+  --container-ports=7080 \
+  --container-predict-route="/predictions/cloth_seg" \
+  --container-health-route="/ping" \
+  --region=<location> \
+  --display-name=cloth_seg \
+  --container-image-uri=gcr.io/<project-id>/pytorch_predict_cloth_seg
+```
+- Create an endpoint using this command in google cloud sdk(replace `<location>` and `<project-id>`):
+```
+gcloud ai endpoints create \
+  --project=<project-id> \
+  --region=<location> \
+  --display-name=cloth_seg
+```
+- Deploy the model on the above created endpoint using the following command in google cloud sdk(replace `<endpoint-id>`(endpoint id from the endpoint we created in above steps), `<location>`, `<project-id>`, `<model-id>`(model id from the model we created in above steps) and `<machine-type>`):
+```
+gcloud ai endpoints deploy-model <endpoint-id> \
+  --project=<project-id> \
+  --region=<location> \
+  --model=<model-id> \
+  --traffic-split=0=100 \
+  --machine-type="<machine-type>" \
+  --display-name=cloth_seg
+```
+- Download the required libraries for inference using `pip install pillow google`.
+- Test the deployed model using the `deployed_infer.py` file:
+```
+python deployed_infer.py --input <path/to/input/image> --output <path/to/output/folder> --project <project-id> --location <location> --project_number <project-number> --endpoint_id <endpoind-id>
+```
+Example:
+```
+python deployed_infer.py --input image.jpg --output output/ --project demo-project-374930 --location asia-south1 --project_number 63********42 --endpoint_id 2129************216	
+```
+To get info about the arguments:
+```
+python deployed_infer.py --help
+```
+
 # Acknowledgements
 - U2net model is from original [u2net repo](https://github.com/xuebinqin/U-2-Net). Thanks to Xuebin Qin for amazing repo.
 - Complete repo follows structure of [Pix2pixHD repo](https://github.com/NVIDIA/pix2pixHD)
