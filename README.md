@@ -51,10 +51,10 @@ Here command is for single node, 4 gpu. Tested only for single node.
 - Inference in colab from here [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1EhEy3uQh-5oOSagUotVOJAf8m7Vqn0D6?usp=sharing)
 
 # Deploy on Vertex AI with Torchserve
-- Download pretrained model of `.pt` format from this [link](https://drive.google.com/file/d/1Ee4igrf5axte9nV1KvcgtEnO7KPKaVm6/view?usp=sharing)(165 MB) in `deploy` folder.
-- Build the docker image inside the `deploy` folder using command(`project-id` with the id of your google cloud project):
+- Download pretrained model of `.pt` format from this [link](https://drive.google.com/file/d/1Ee4igrf5axte9nV1KvcgtEnO7KPKaVm6/view?usp=sharing)(169 MB) in `deploy` folder.
+- Build the docker image using the Dockerfile inside the `deploy` folder using command(replace `<project-id>` with the id of your google cloud project):
 ```
-docker build -t gcr.io/(project-id)/pytorch_predict_cloth_seg .
+docker build -t gcr.io/<project-id>/pytorch_predict_cloth_seg .
 ```
 - Authenticate with the Google Cloud SDK by running the command `gcloud auth configure-docker`.
 - Push your Docker image to the Google Cloud Registry using the command `docker push gcr.io/(project-id)/pytorch_predict_cloth_seg`.
