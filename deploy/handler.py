@@ -51,9 +51,9 @@ class SegmentationHandler(BaseHandler):
     def preprocess(self, data):
         # Preprocess the input data by converting the image to a tensor
         inputs = []
-        print(data)
+        #print(data)
         input_path = data[0].get('body')
-        print(input_path)
+        #print(input_path)
         if type(input_path)==bytearray:
             # If the input is in JSON format, extract the image data and decode it
             json_string = input_path.decode()
@@ -62,7 +62,7 @@ class SegmentationHandler(BaseHandler):
         else:
             # If the input is already a decoded image, extract the image data
             final_data = input_path['instances'][0]['instance_key']
-            print(final_data)
+            #print(final_data)
             image = Image.open(io.BytesIO(base64.b64decode(final_data)))
 
         # Preprocess image
