@@ -105,7 +105,7 @@ To get info about the arguments:
 ```
 python deployed_infer.py --help
 ```
-## Note: 
+**Note:** 
 * The location of the endpoint, model and deployed model should be same.
 * The input_image format while inferencing on vertex ai should be jpeg, jpg or png.
 * Incase of facing some errors, try to uncomment the `print` statements in `handler.py` to debug an check the logs in GCP.
