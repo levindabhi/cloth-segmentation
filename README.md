@@ -52,6 +52,7 @@ Here command is for single node, 4 gpu. Tested only for single node.
 
 # Deploy on Vertex AI with Torchserve
 - Download pretrained model of `.pt` format from this [link](https://drive.google.com/file/d/1Ee4igrf5axte9nV1KvcgtEnO7KPKaVm6/view?usp=sharing)(169 MB) in `deploy` folder.
+- Used the `deploy/convert_to_torchscript.py` to convert the trained_checkpoint file to torchscipt format.
 - Build the docker image using the Dockerfile inside the `deploy` folder using command(replace `<project-id>` with the id of your google cloud project):
 ```
 docker build -t gcr.io/<project-id>/pytorch_predict_cloth_seg .
@@ -104,7 +105,10 @@ To get info about the arguments:
 ```
 python deployed_infer.py --help
 ```
-**Note:** The location of the endpoint, model and deployed model should be same.
+## Note: 
+* The location of the endpoint, model and deployed model should be same.
+* The input_image format while inferencing on vertex ai should be jpeg, jpg or png.
+* Incase of facing some errors, try to uncomment the `print` statements in `handler.py` to debug an check the logs in GCP.
 # Acknowledgements
 - U2net model is from original [u2net repo](https://github.com/xuebinqin/U-2-Net). Thanks to Xuebin Qin for amazing repo.
 - Complete repo follows structure of [Pix2pixHD repo](https://github.com/NVIDIA/pix2pixHD)
