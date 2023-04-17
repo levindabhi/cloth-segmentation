@@ -56,8 +56,14 @@ Here command is for single node, 4 gpu. Tested only for single node.
 ```
 docker build -t gcr.io/<project-id>/pytorch_predict_cloth_seg .
 ```
-- Authenticate with the Google Cloud SDK by running the command `gcloud auth configure-docker`.
-- Push your Docker image to the Google Cloud Registry using the command `docker push gcr.io/(project-id)/pytorch_predict_cloth_seg`.
+- Authenticate with the Google Cloud SDK by running the command:
+```
+gcloud auth configure-docker
+```
+- Push your Docker image to the Google Cloud Registry using the command:
+```
+docker push gcr.io/(project-id)/pytorch_predict_cloth_seg
+```
 - Create a new custom model on vertex ai using this commad in google cloud sdk(replace `<location>` and `<project-id>`):
 ```
 gcloud ai models upload \
